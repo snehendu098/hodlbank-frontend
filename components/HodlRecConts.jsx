@@ -2,6 +2,7 @@ import React from "react";
 import Hr from "./Hr";
 import { AiFillLock } from "react-icons/ai";
 import Link from "next/link";
+import { useMoralis } from "react-moralis";
 // moralis integrate
 const ConnectedTrue = () => (
   <>
@@ -33,6 +34,7 @@ const ConnnectedFalse = () => (
 );
 
 const HodlRecConts = () => {
+  const { isAuthenticated } = useMoralis();
   return (
     <div className="w-full flex justify-center items-center  flex-col ">
       <Hr height={2} />
@@ -41,8 +43,7 @@ const HodlRecConts = () => {
       </p>
       <Hr height={2} />
       <div className="flex flex-nowrap md:flex-col  justify-around items-center w-full">
-        <ConnectedTrue />
-        {/* <ConnnectedFalse /> */}
+        {isAuthenticated ? <ConnectedTrue /> : <ConnnectedFalse />}
       </div>
     </div>
   );

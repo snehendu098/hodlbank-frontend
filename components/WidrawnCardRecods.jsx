@@ -1,6 +1,10 @@
+import moment from "moment";
 import React from "react";
+import { useMoralis } from "react-moralis";
 
-const WidrawnCardRecords = () => {
+const WidrawnCardRecords = ({ options }) => {
+  const date = parseInt(options.dateOfWidrawal);
+  const { Moralis } = useMoralis();
   return (
     <div
       className={`w-[95%] bg-red-400 my-2
@@ -8,7 +12,8 @@ const WidrawnCardRecords = () => {
     >
       <div className="w-full flex items-center mb-2">
         <p className="font-bold w-[75%] flex">
-          <span className="text-white">ETH:</span> 0.00000003
+          <span className="text-white">ETH:</span>{" "}
+          {Moralis.Units.FromWei(options.amount)}
         </p>
         <div className="w-[25%] flex flex-row-reverse">
           <button
@@ -22,7 +27,10 @@ const WidrawnCardRecords = () => {
       <hr className="w-full bg-white" />
       {/* timestamp calculator */}
       <p className="text-sm mt-2 ">
-        Widrawn At: <span className="font-bold">1 Jan 2021 | 10:07 pm</span>
+        Widrawn At:{" "}
+        <span className="font-bold">
+          {moment.unix(date).format("DD/MM/YYYY")}
+        </span>
       </p>
     </div>
   );

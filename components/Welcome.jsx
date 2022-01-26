@@ -1,13 +1,21 @@
 import Router from "next/router";
 import React from "react";
+import { useMoralis } from "react-moralis";
 import Card from "./Card";
 
 const Welcome = () => {
-  let isTrue = true;
-  const handleClickGetStarted = () => {
-    if (isTrue) {
-      Router.push("/create-hodl");
+  const { isAuthenticated, authenticate, enableWeb3 } = useMoralis();
+  const AuthRedirectConditional = async (url) => {
+    if (!isAuthenticated) {
+      await authenticate();
+      await enableWeb3();
+    } else {
+      Router.push(url);
     }
+  };
+
+  const handleClickGetStarted = () => {
+    AuthRedirectConditional("/create-hodl");
   };
 
   return (

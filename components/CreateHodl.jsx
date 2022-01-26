@@ -1,23 +1,56 @@
 import * as React from "react";
+import {
+  useMoralis,
+  useNativeBalance,
+  useWeb3ExecuteFunction,
+} from "react-moralis";
+import { devAddress } from "../utils/constants";
 
 const CreateHodl = () => {
   const [date, setDate] = React.useState(new Date());
   const [amount, setAmount] = React.useState(0);
+  const { Moralis } = useMoralis();
+  // const {data: balance} = useNativeBalance({chain: "rinkeby"})
 
-  const handleDateChange = (newValue) => {
-    setDate(newValue);
-  };
+  const contractProcessor = useWeb3ExecuteFunction();
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    //create a hodl
+  const handleSubmit = async () => {
+    let options = {
+      contractAddress: devAddress,
+      functionName: "CreateHodl",
+      abi: [
+        {
+          inputs: [
+            {
+              internalType: "uint256",
+              name: "_widrawlTime",
+              type: "uint256",
+            },
+          ],
+          name: "CreateHodl",
+          outputs: [],
+          stateMutability: "payable",
+          type: "function",
+        },
+      ],
+      params: {
+        _widrawlTime: new Date(date).getTime() / 1000,
+      },
+      msgValue: Moralis.Units.ETH(amount),
+    };
+    await contractProcessor.fetch({
+      onError: (e) => {
+        console.log(e);
+      },
+      params: options,
+      onComplete: () => {
+        console.log("Hello");
+      },
+    });
   };
 
   return (
-    <form
-      className="w-[90%] flex items-center flex-col bg-slate-500/50 md:w-full"
-      onSubmit={handleSubmit}
-    >
+    <div className="w-[90%] flex items-center flex-col bg-slate-500/50 md:w-full">
       <h2 className="text-2xl mb-3">
         Create <span className="text-yellow-500">HODL</span>
       </h2>
@@ -30,19 +63,18 @@ const CreateHodl = () => {
       />
       <input
         type="datetime-local"
-        name="Date"
         placeholder="Date and Time"
         defaultValue={date}
-        onChange={handleDateChange}
+        onChange={(e) => setDate(e.target.value)}
         className="mb-7 w-[95%] bg-transparent/30 text-slate-50 p-5 border-b-2 border-white"
       />
       <button
-        type="submit"
+        onClick={handleSubmit}
         className="w-[95%] bg-yellow-500 p-4 mb-3 rounded-full text-slate-800 font-bold text-2xl"
       >
         Create Hodl
       </button>
-    </form>
+    </div>
   );
 };
 

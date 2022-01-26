@@ -1,9 +1,9 @@
 import Head from "next/head";
+import { useChain, useMoralis } from "react-moralis";
 import HodlRecConts from "../components/HodlRecConts";
 import Welcome from "../components/Welcome";
 
 export default function Home() {
-  console.log(process.env.SERVER_URL);
   return (
     <div>
       <Head>

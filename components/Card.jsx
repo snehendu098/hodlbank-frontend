@@ -1,10 +1,12 @@
 import React from "react";
-// import { AiFillPlayCircle } from "react-icons/ai";
 import { SiEthereum } from "react-icons/si";
 import { BsInfoCircle } from "react-icons/bs";
 import { shortenAddress } from "../utils/shortenAddress";
+import { useMoralis } from "react-moralis";
 
 const Card = ({ extras }) => {
+  const { account } = useMoralis();
+  const userName = account || "";
   return (
     <div
       className={`flex flex-col flex-1 items-center justify-start w-full mt-10 ${extras} `}
@@ -19,7 +21,7 @@ const Card = ({ extras }) => {
           </div>
           <div>
             <p className="text-amber-500 font-light text-sm">
-              {shortenAddress("")}
+              {shortenAddress(userName)}
             </p>
             <p className="text-amber-500 font-semibold text-lg mt-1">
               Ethereum
