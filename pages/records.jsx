@@ -84,7 +84,6 @@ const actives = () => {
 
   return (
     <div className="w-full flex flex-col min-h-[80vh] items-center ">
-      <NavBar />
       <p className="text-2xl font-bold my-3">
         ACTIVE <span className="text-yellow-500">HODL</span> RECORDS
       </p>

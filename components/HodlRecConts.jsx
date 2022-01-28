@@ -12,6 +12,12 @@ const ConnectedTrue = () => (
         <span className="text-sm">The hodls created by you</span>
       </div>
     </Link>
+    <Link href={"/community"}>
+      <div className="flex h-[12rem] md:w-[94%] cursor-pointer  hover:bg-slate-800 transition duration-500 rounded-3xl w-[37%] bg-amber-500  my-4 text-3xl flex-col border  justify-center align-middle items-center ">
+        <p>ACCESS THE COMMUNITY</p>
+        <span className="text-sm">Get access to the discord community</span>
+      </div>
+    </Link>
   </>
 );
 

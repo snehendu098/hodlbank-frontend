@@ -23,7 +23,7 @@ const NavBar = () => {
     }
   };
 
-  console.log(chainId);
+  // console.log(chainId);
 
   if (isAuthenticated && web3EnableError) {
     Router.reload();

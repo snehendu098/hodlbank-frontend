@@ -36,7 +36,7 @@ const CreateHodl = () => {
     };
     await contractProcessor.fetch({
       onError: (e) => {
-        console.log(e);
+        alert(e.message);
       },
       params: options,
       onSuccess: () => {
