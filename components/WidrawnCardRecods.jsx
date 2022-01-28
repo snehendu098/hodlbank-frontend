@@ -7,7 +7,7 @@ const WidrawnCardRecords = ({ options }) => {
   const { Moralis } = useMoralis();
   return (
     <div
-      className={`w-[95%] bg-red-400 my-2
+      className={`w-[90%] bg-red-400 my-2
       border border-white p-3 flex flex-col rounded-xl md:w-[90%]`}
     >
       <div className="w-full flex items-center mb-2">

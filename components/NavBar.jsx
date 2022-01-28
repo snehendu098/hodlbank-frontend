@@ -1,11 +1,18 @@
 import Link from "next/link";
+import Router from "next/router";
 import React, { useEffect, useState } from "react";
 import { useChain, useMoralis } from "react-moralis";
 
 const NavBar = () => {
   const [btnCheck, setBtnCheck] = useState("Connect");
-  const { authenticate, isAuthenticated, logout, web3EnableError, enableWeb3 } =
-    useMoralis();
+  const {
+    authenticate,
+    isAuthenticated,
+    logout,
+    web3EnableError,
+    enableWeb3,
+    Moralis,
+  } = useMoralis();
   const { switchNetwork, chain, chainId } = useChain();
 
   const HandleBtn = async () => {
@@ -19,11 +26,12 @@ const NavBar = () => {
   console.log(chainId);
 
   if (isAuthenticated && web3EnableError) {
-    alert(web3EnableError.message);
+    Router.reload();
   }
 
   async function web3enable() {
     await enableWeb3();
+    await Moralis.enableWeb3();
     await switchNetwork("0x4");
   }
 

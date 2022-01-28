@@ -1,15 +1,11 @@
 import * as React from "react";
-import {
-  useMoralis,
-  useNativeBalance,
-  useWeb3ExecuteFunction,
-} from "react-moralis";
+import { useMoralis, useWeb3ExecuteFunction } from "react-moralis";
 import { devAddress } from "../utils/constants";
 
 const CreateHodl = () => {
   const [date, setDate] = React.useState(new Date());
   const [amount, setAmount] = React.useState(0);
-  const { Moralis } = useMoralis();
+  const { Moralis, account } = useMoralis();
   // const {data: balance} = useNativeBalance({chain: "rinkeby"})
 
   const contractProcessor = useWeb3ExecuteFunction();
@@ -43,8 +39,8 @@ const CreateHodl = () => {
         console.log(e);
       },
       params: options,
-      onComplete: () => {
-        console.log("Hello");
+      onSuccess: () => {
+        console.log("Success");
       },
     });
   };

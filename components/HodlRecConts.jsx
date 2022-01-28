@@ -6,18 +6,10 @@ import { useMoralis } from "react-moralis";
 // moralis integrate
 const ConnectedTrue = () => (
   <>
-    <Link href={"/actives"}>
+    <Link href={"/records"}>
       <div className="flex h-[12rem] md:w-[94%] cursor-pointer  hover:bg-slate-800 transition duration-500 rounded-3xl w-[37%] bg-amber-500  my-4 text-3xl flex-col border  justify-center align-middle items-center ">
-        <p>ACTIVE HODLS</p>
-        <span className="text-sm">
-          The hodls which have not yet been widrawn
-        </span>
-      </div>
-    </Link>
-    <Link href={"/widrawn"}>
-      <div className="flex h-[12rem] md:w-[94%] cursor-pointer  hover:bg-slate-800 transition duration-500  rounded-3xl flex-col w-[37%] justify-center my-4 text-3xl border  bg-amber-500  align-middle items-center ">
-        <p>WIDRAWN HODLS</p>
-        <span className="text-sm">The hodls which have been widrawn</span>
+        <p>GET HODLS</p>
+        <span className="text-sm">The hodls created by you</span>
       </div>
     </Link>
   </>
