@@ -26,7 +26,6 @@ const Card = ({ extras }) => {
             <p className="text-amber-500 font-semibold text-lg mt-1">
               Ethereum
             </p>
-            <p className="text-amber-500 font-light text-sm">Reward: 90</p>
           </div>
         </div>
       </div>
