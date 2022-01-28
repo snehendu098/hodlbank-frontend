@@ -22,11 +22,13 @@ const App = () => {
         <a
           href="https://discord.gg/DS7fPzX5"
           target={"_blank"}
+          rel="noreferrer"
           className="bg-[#5865F2] rounded-md text-xl p-5 cursor-pointer flex items-center justify-around"
         >
           <FaDiscord className="mr-2" fontSize={30} /> Join Discord
         </a>
         <a
+          rel="noreferrer"
           href={
             "https://testnets.opensea.io/assets/0x23387a6fbfddab0dec2d08fa23575d3caa0ae7c1/0"
           }

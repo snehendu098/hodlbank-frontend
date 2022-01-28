@@ -17,68 +17,69 @@ const Alternate = () => (
 const actives = () => {
   const { account, Moralis, isAuthenticated } = useMoralis();
   const [tnx, setTnx] = React.useState([]);
-  const { chainId } = useChain();
 
   const handleTxns = async () => {
-    let options = {
-      contractAddress: devAddress,
-      functionName: "getTransactions",
-      abi: [
-        {
-          inputs: [
-            {
-              internalType: "address",
-              name: "account",
-              type: "address",
-            },
-          ],
-          name: "getTransactions",
-          outputs: [
-            {
-              components: [
-                {
-                  internalType: "uint256",
-                  name: "amount",
-                  type: "uint256",
-                },
-                {
-                  internalType: "uint256",
-                  name: "createdAt",
-                  type: "uint256",
-                },
-                {
-                  internalType: "bool",
-                  name: "isWidrawn",
-                  type: "bool",
-                },
-                {
-                  internalType: "uint256",
-                  name: "widrawalTime",
-                  type: "uint256",
-                },
-                {
-                  internalType: "uint256",
-                  name: "dateOfWidrawal",
-                  type: "uint256",
-                },
-              ],
-              internalType: "struct HodlBank.SingleHodl[]",
-              name: "",
-              type: "tuple[]",
-            },
-          ],
-          stateMutability: "view",
-          type: "function",
+    if (isAuthenticated) {
+      let options = {
+        contractAddress: devAddress,
+        functionName: "getTransactions",
+        abi: [
+          {
+            inputs: [
+              {
+                internalType: "address",
+                name: "account",
+                type: "address",
+              },
+            ],
+            name: "getTransactions",
+            outputs: [
+              {
+                components: [
+                  {
+                    internalType: "uint256",
+                    name: "amount",
+                    type: "uint256",
+                  },
+                  {
+                    internalType: "uint256",
+                    name: "createdAt",
+                    type: "uint256",
+                  },
+                  {
+                    internalType: "bool",
+                    name: "isWidrawn",
+                    type: "bool",
+                  },
+                  {
+                    internalType: "uint256",
+                    name: "widrawalTime",
+                    type: "uint256",
+                  },
+                  {
+                    internalType: "uint256",
+                    name: "dateOfWidrawal",
+                    type: "uint256",
+                  },
+                ],
+                internalType: "struct HodlBank.SingleHodl[]",
+                name: "",
+                type: "tuple[]",
+              },
+            ],
+            stateMutability: "view",
+            type: "function",
+          },
+        ],
+        params: {
+          account,
         },
-      ],
-      params: {
-        account,
-      },
-    };
+      };
 
-    const result = await Moralis.executeFunction(options);
-    if (result) {
-      setTnx(result);
+      const result = await Moralis.executeFunction(options);
+      if (result) {
+        setTnx(result);
+      }
     }
   };
 
